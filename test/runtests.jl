@@ -1,17 +1,38 @@
 using Test, crash_MatrixTools
 
-V = [
-    [
-        [1.0 2 3; 0 5 1; 0 0 0],
-        [1.0 2 3; 0 5 1]
-    ]
-]
+@testset verbose=true "TOT" begin
+    @testset verbose=true "Pivot_GetRowIndex" begin
+        @testset "Success" begin
+            @test 3 == Pivot_GetIndexRow([0.0, 0, 1, 0, 0, 2])
+            @test 3 == Pivot_GetIndexRow([0.0, 0, 1, 0, 0, 2])
+            @test 1 == Pivot_GetIndexRow([1.0, 0, 0, 0])
+            @test 1 == Pivot_GetIndexRow([2.0])
+            @test 4 == Pivot_GetIndexRow([0.0, 0, 0, 2, 3])
+        end
+    
+        @testset "No pivot" begin
+            @test -1 == Pivot_GetIndexRow([0.0, 0, 0, 0])
+            @test -1 == Pivot_GetIndexRow([0.0])
+        end
+    
+        @testset "Empty" begin
+            @test_throws DimensionMismatch Pivot_GetIndexRow(Vector{Float64}())
+        end
+    end
+    
+    @testset verbose=true "Pivot_GetRowIndex_MinPivot_First" begin
+        @testset "Success" begin
+            @test 1 == Pivot_GetRowIndex_MinPivot_First([1.0 0 0; 0 0 1; 0 1 0])
+            @test 1 == Pivot_GetRowIndex_MinPivot_First([1.0 0 0; 1 0 1; 0 1 0])
+            @test 2 == Pivot_GetRowIndex_MinPivot_First([0.0 0 2; 0 1 1; 0 1 0])
+        end
 
-res::Bool = true
-# for v in V
-#     if v[2] != Gauss_Stepping(v[1])
-#         res = false
-#     end
-# end
-
-@test res
+        @testset "Zeros" begin
+            @test -1 == Pivot_GetRowIndex_MinPivot_First(zeros(1,1))
+            @test -1 == Pivot_GetRowIndex_MinPivot_First(zeros(2,2))
+            @test -1 == Pivot_GetRowIndex_MinPivot_First(zeros(3,3))
+            @test -1 == Pivot_GetRowIndex_MinPivot_First(zeros(1,3))
+            @test -1 == Pivot_GetRowIndex_MinPivot_First(zeros(3,1))
+        end
+    end
+end
