@@ -1,6 +1,6 @@
 module crash_MatrixTools
 
-export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First
+export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First, Matrix_IsNumm
 
 function Pivot_GetIndexRow(V::Vector{Float64})::Int64
     if size(V, 1) == 0
@@ -29,6 +29,15 @@ function Pivot_GetRowIndex_MinPivot_First(M::Matrix{Float64})::Int64
     end
 
     return MinPivot_Row
+end
+
+function Matrix_IsNumm(M::Matrix{Float64})::Bool
+    for i in eachindex(M) 
+        if M[i] != 0
+            return false
+        end
+    end
+    return true
 end
 
 end # module crash_MatrixTools

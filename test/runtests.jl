@@ -35,4 +35,22 @@ using Test, crash_MatrixTools
             @test -1 == Pivot_GetRowIndex_MinPivot_First(zeros(3,1))
         end
     end
+
+    @testset verbose=true "Matrix_IsNumm" begin
+        @testset "Success" begin
+            @test true == Matrix_IsNumm([0.0 0 0; 0 0 0])
+            @test true == Matrix_IsNumm([0.0; 0 ;;])
+            @test true == Matrix_IsNumm([0.0 ;;])
+            @test false == Matrix_IsNumm([0.0 0 2; 0 0 0])
+            @test false == Matrix_IsNumm([2.0; 0 ;;])
+            @test false == Matrix_IsNumm([2.0 ;;])
+        end
+
+        @testset "Zeros" begin
+            @test true == Matrix_IsNumm(zeros(0, 0))
+            @test true == Matrix_IsNumm(zeros(2, 0))
+            @test true == Matrix_IsNumm(zeros(0, 2))
+            @test true == Matrix_IsNumm(zeros(2, 2))
+        end
+    end
 end
