@@ -53,4 +53,22 @@ using Test, crash_MatrixTools
             @test true == Matrix_IsNull(zeros(2, 2))
         end
     end
+
+    @testset verbose=true "Matrix_SwapRows" begin
+        @testset "Success" begin
+            @test true == Matrix_IsNull([0.0 0 0; 0 0 0])
+            @test true == Matrix_IsNull([0.0; 0 ;;])
+            @test true == Matrix_IsNull([0.0 ;;])
+            @test false == Matrix_IsNull([0.0 0 2; 0 0 0])
+            @test false == Matrix_IsNull([2.0; 0 ;;])
+            @test false == Matrix_IsNull([2.0 ;;])
+        end
+
+        @testset "Indexes out" begin
+            @test_throws DomainError Matrix_SwapRows(zeros(0, 1), 1, 1)
+            @test_throws DomainError Matrix_SwapRows(zeros(0, 1), 1, 2)
+            @test_throws DomainError Matrix_SwapRows(zeros(1, 1), 1, 2)
+            @test_throws DomainError Matrix_SwapRows(zeros(1, 1), 2, 1)
+        end
+    end
 end
