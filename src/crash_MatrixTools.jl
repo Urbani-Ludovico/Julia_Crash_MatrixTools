@@ -1,6 +1,6 @@
 module crash_MatrixTools
 
-export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First, Matrix_IsNull, Matrix_SwapRows
+export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First, Matrix_IsNull, Matrix_SwapRows, Matrix_RemoveRows
 
 function Pivot_GetIndexRow(V::Vector{Float64})::Int64
     if size(V, 1) == 0
@@ -52,6 +52,10 @@ function Matrix_SwapRows(M::Matrix{Float64}, r1::Int64, r2::Int64)::Matrix{Float
     end
 
     return M
+end
+
+function Matrix_RemoveRows(M::Matrix{Float64}, rows::Vector{Int64})::Matrix{Float64}
+    return M[[i for i in 1:size(M, 1) if i ∉ rows], :]
 end
 
 end # module crash_MatrixTools

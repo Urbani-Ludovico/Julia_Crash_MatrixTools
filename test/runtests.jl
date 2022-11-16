@@ -71,4 +71,16 @@ using Test, crash_MatrixTools
             @test_throws DomainError Matrix_SwapRows(zeros(1, 1), 2, 1)
         end
     end
+
+    @testset verbose=true "Matrix_RemoveRows" begin
+        @testset "Success" begin
+            @test [1.0 2; 5 6] == Matrix_RemoveRows([1.0 2; 3 4; 5 6], [2])
+            @test [1.0 2; ] == Matrix_RemoveRows([1.0 2; 3 4; 5 6], [2, 3, 4])
+        end
+
+        @testset "Zeros" begin
+            @test zeros(0, 2) == Matrix_RemoveRows([1.0 2; 5 6], [1, 2])
+            @test zeros(0, 2) == Matrix_RemoveRows(zeros(0, 2), [1, 2])
+        end
+    end
 end
