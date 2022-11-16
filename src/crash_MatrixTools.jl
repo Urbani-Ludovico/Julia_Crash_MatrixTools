@@ -31,7 +31,7 @@ function Pivot_GetRowIndex_MinPivot_First(M::Matrix{Float64})::Int64
     return MinPivot_Row
 end
 
-function Matrix_IsNumm(M::Matrix{Float64})::Bool
+function Matrix_IsNull(M::Matrix{Float64})::Bool
     for i in eachindex(M) 
         if M[i] != 0
             return false

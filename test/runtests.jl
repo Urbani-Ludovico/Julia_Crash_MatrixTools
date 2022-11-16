@@ -36,21 +36,21 @@ using Test, crash_MatrixTools
         end
     end
 
-    @testset verbose=true "Matrix_IsNumm" begin
+    @testset verbose=true "Matrix_IsNull" begin
         @testset "Success" begin
-            @test true == Matrix_IsNumm([0.0 0 0; 0 0 0])
-            @test true == Matrix_IsNumm([0.0; 0 ;;])
-            @test true == Matrix_IsNumm([0.0 ;;])
-            @test false == Matrix_IsNumm([0.0 0 2; 0 0 0])
-            @test false == Matrix_IsNumm([2.0; 0 ;;])
-            @test false == Matrix_IsNumm([2.0 ;;])
+            @test true == Matrix_IsNull([0.0 0 0; 0 0 0])
+            @test true == Matrix_IsNull([0.0; 0 ;;])
+            @test true == Matrix_IsNull([0.0 ;;])
+            @test false == Matrix_IsNull([0.0 0 2; 0 0 0])
+            @test false == Matrix_IsNull([2.0; 0 ;;])
+            @test false == Matrix_IsNull([2.0 ;;])
         end
 
         @testset "Zeros" begin
-            @test true == Matrix_IsNumm(zeros(0, 0))
-            @test true == Matrix_IsNumm(zeros(2, 0))
-            @test true == Matrix_IsNumm(zeros(0, 2))
-            @test true == Matrix_IsNumm(zeros(2, 2))
+            @test true == Matrix_IsNull(zeros(0, 0))
+            @test true == Matrix_IsNull(zeros(2, 0))
+            @test true == Matrix_IsNull(zeros(0, 2))
+            @test true == Matrix_IsNull(zeros(2, 2))
         end
     end
 end
