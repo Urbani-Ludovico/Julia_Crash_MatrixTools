@@ -1,11 +1,18 @@
 module crash_MatrixTools
 
-function Pivot_GetRowIndex(V::Vector{Float64})::Int64
+export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First
+
+function Pivot_GetIndexRow(V::Vector{Float64})::Int64
+    if size(V, 1) == 0
+        throw(DimensionMismatch("Vector size must be greather thank 0!"))
+    end
+
     for (i,v) in enumerate(V)
         if v != 0.0
             return i
         end
     end
+
     return -1
 end
 
@@ -14,8 +21,8 @@ function Pivot_GetRowIndex_MinPivot_First(M::Matrix{Float64})::Int64
     MinPivot_Row::Int64 = -1
 
     for r in 1:size(M,1)
-        p = Pivot_GetRowIndex(vec(M[[r], :]))
-        if MinPivot < 0 || p < MinPivot
+        p = Pivot_GetIndexRow(vec(M[[r], :]))
+        if p != -1 && (MinPivot < 0 || p < MinPivot)
             MinPivot = p
             MinPivot_Row = r
         end
