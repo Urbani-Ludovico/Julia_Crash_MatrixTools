@@ -1,6 +1,6 @@
 module crash_MatrixTools
 
-export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First, Matrix_IsNumm
+export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First, Matrix_IsNull
 
 function Pivot_GetIndexRow(V::Vector{Float64})::Int64
     if size(V, 1) == 0
