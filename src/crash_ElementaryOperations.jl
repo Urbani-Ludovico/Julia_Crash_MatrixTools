@@ -36,13 +36,6 @@ function Matrix_EO3(M::Matrix{Float64}, R_cost::Int64, R_var::Int64, C::Float64)
     if R_cost == R_var
         throw(ArgumentError("Two indexes must different!"))
     end
-
-    R_cost_p = Pivot_GetIndexRow(vec(M[R_cost, :]))
-    R_var_p = Pivot_GetIndexRow(vec(M[R_var, :]))
-
-    if (R_cost_p != R_var_p)
-        throw(DomainError("Row of the two indexes must have same pivot!"))
-    end
     
     for i in R_var_p:size(M,2)
         M[R_var,i] = M[R_var,i] - C * M[R_cost,i]
