@@ -50,5 +50,5 @@ function Gauss_ReduceTwoRows(M::Matrix{Float64}, R_cost::Int64, R_var::Int64)::M
     end
     
     c::Float64 = M[R_var, R_var_p] / M[R_cost, R_cost_p]
-    return ElementaryOperations_RowCOther(M, R_cost, R_var, c)
+    return ElementaryOperations_RowCOther(M, R_cost, R_var, 0-c)
 end
