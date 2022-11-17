@@ -83,4 +83,16 @@ using Test, crash_MatrixTools
             @test zeros(0, 2) == Matrix_RemoveRows(zeros(0, 2), [1, 2])
         end
     end
+
+    @testset verbose=true "Matrix_ClearEmptyRow" begin
+        @testset "Success" begin
+            @test [1.0 2 3; 0 0 5] == Matrix_ClearEmptyRow([0.0 0 0; 1.0 2 3; 0 0 5])
+            @test [0.0 0 1; 0 0 5] == Matrix_ClearEmptyRow([0.0 0 0; 0 0 1; 0 0 0; 0 0 5])
+        end
+        @testset "Zeros" begin
+            @test zeros(0, 3) == Matrix_ClearEmptyRow([0.0 0 0; 0 0 0; 0 0 0])
+            @test zeros(0, 3) == Matrix_ClearEmptyRow(zeros(0, 3))
+            @test zeros(0, 0) == Matrix_ClearEmptyRow(zeros(3, 0))
+        end
+    end
 end
