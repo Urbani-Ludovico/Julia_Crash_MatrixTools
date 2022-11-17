@@ -1,6 +1,8 @@
 # module crash_Matrix
 
-export Matrix_IsNull, Matrix_SwapRows, Matrix_RemoveRows, Matrix_ClearEmptyRow
+include("crash_Pivot.jl")
+
+export Matrix_IsNull, Matrix_RemoveRows, Matrix_ClearEmptyRow, Matrix_IsInStair
 
 function Matrix_IsNull(M::Matrix{Float64})::Bool
     for i in eachindex(M) 
@@ -9,20 +11,6 @@ function Matrix_IsNull(M::Matrix{Float64})::Bool
         end
     end
     return true
-end
-
-function Matrix_SwapRows(M::Matrix{Float64}, r1::Int64, r2::Int64)::Matrix{Float64}
-    if r1 > size(M, 1) || r2 > size(M, 1)
-        throw(DomainError("Row indexes out of range!"))
-    end
-
-    if r1 != r2
-        for c in 1:size(M, 2)
-            M[r1,c], M[r2, c] = M[r2, c], M[r1, c]
-        end
-    end
-
-    return M
 end
 
 function Matrix_RemoveRows(M::Matrix{Float64}, rows::Vector{Int64})::Matrix{Float64}
@@ -38,6 +26,25 @@ function Matrix_ClearEmptyRow(M::Matrix{Float64})::Matrix{Float64}
         end
     end
     return M[notEmpty, :];
+end
+
+function Matrix_IsInStair(M::Matrix{Float64})::Bool
+    if (Matrix_IsNull(M))
+        return false
+    end
+
+    PivotCounter = -1
+    for r in 1:size(M,1)
+        p = Pivot_GetIndexRow(vec(M[[r], :]))
+        if p < 0
+            return false
+        elseif p > PivotCounter
+            PivotCounter = p
+        else
+            return false
+        end
+    end
+    return true
 end
 
 # end # crash_Matrix
