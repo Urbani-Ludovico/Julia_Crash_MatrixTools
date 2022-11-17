@@ -30,7 +30,7 @@ function Gauss_Stepping(M::Matrix{Float64})::Matrix{Float64}
         M = Matrix_ClearEmptyRow(M)
         RowStep += 1
     end
-    
+
     return M
 end
 
@@ -44,6 +44,10 @@ function Gauss_ReduceTwoRows(M::Matrix{Float64}, R_cost::Int64, R_var::Int64)::M
 
     R_cost_p = Pivot_GetIndexRow(vec(M[R_cost, :]))
     R_var_p = Pivot_GetIndexRow(vec(M[R_var, :]))
+
+    if (R_cost_p != R_var_p)
+        throw(DomainError("Row of the two indexes must have same pivot!"))
+    end
     
     c::Float64 = M[R_var, R_var_p] / M[R_cost, R_cost_p]
     return ElementaryOperations_RowCOther(M, R_cost, R_var, c)
