@@ -1,7 +1,7 @@
 
 include("crash_Pivot.jl")
 
-export Matrix_EO1, Matrix_EO2, Matrix_EO3, ElementaryOperations_SwapRows, ElementaryOperations_RowProductConst
+export Matrix_EO1, Matrix_EO2, Matrix_EO3, ElementaryOperations_SwapRows, ElementaryOperations_RowProductConst, ElementaryOperations_RowCOther
 
 function Matrix_EO1(M::Matrix{Float64}, r1::Int64, r2::Int64)::Matrix{Float64}
     if r1 > size(M, 1) || r2 > size(M, 1)

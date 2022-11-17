@@ -7,7 +7,7 @@ include("crash_Pivot.jl")
 export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First
 
 include("crash_ElementaryOperations.jl")
-export Matrix_EO1, Matrix_EO2, Matrix_EO3, ElementaryOperations_SwapRows, ElementaryOperations_RowProductConst
+export Matrix_EO1, Matrix_EO2, Matrix_EO3, ElementaryOperations_SwapRows, ElementaryOperations_RowProductConst, ElementaryOperations_RowCOther
 
 
 end # module crash_MatrixTools
