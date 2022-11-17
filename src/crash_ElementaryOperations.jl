@@ -35,7 +35,7 @@ function Matrix_EO3(M::Matrix{Float64}, R_cost::Int64, R_var::Int64, C::Float64)
         throw(ArgumentError("Two indexes must different!"))
     end
     
-    for i in R_var_p:size(M,2)
+    for i in 1:size(M,2)
         M[R_var,i] = M[R_var,i] + C * M[R_cost,i]
     end
 
