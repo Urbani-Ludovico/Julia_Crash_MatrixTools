@@ -139,6 +139,22 @@ using Test, crash_MatrixTools
                 @test_throws DomainError Matrix_EO2(zeros(1, 1), 2, 1.0)
             end
         end
+
+        @testset verbose=true "Matrix_EO3" begin
+            @testset "Success" begin
+                @test [0.0 0 0; 1 2 5; 0 0 1; 4 6 10] == Matrix_EO3([0.0 0 0; 1 2 5; 0 0 1; 3 4 5], 2, 4, 1.0)
+                @test [4.0 6 2; 0 2 5; 20 22 6] == Matrix_EO3([4.0 6 2; 0 2 5; 8 4 0], 1, 3, 3.0)
+            end
+
+            @testset "Out of range" begin
+                @test_throws DomainError Matrix_EO3(zeros(1, 1), 1, 2, 3.0)
+                @test_throws DomainError Matrix_EO3(zeros(1, 1), 2, 2, 3.0)
+            end
+
+            @testset "Same rows" begin
+                @test_throws ArgumentError Matrix_EO3(zeros(2, 1), 1, 1, 3.0)
+            end
+        end
     end
 
     @testset verbose=true "crash_GaussStepping" begin
