@@ -15,7 +15,7 @@ module crash_GaussStepping
 
         RowStep = 1
         PivotStep = -1
-        while !(Matrix_IsInStair(M)) && RowStep < size(M, 1)
+        while !(crash_Matrix.Matrix_IsInStair(M)) && RowStep < size(M, 1)
             M2 = crash_Matrix.Matrix_RemoveRows(M, collect(1:(RowStep-1)))
             P_min = crash_Pivot.Pivot_GetRowIndex_MinPivot_First(M2) + RowStep - 1
             M = crash_ElementaryOperations.ElementaryOperations_SwapRows(M, RowStep, P_min)
