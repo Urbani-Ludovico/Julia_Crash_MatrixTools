@@ -9,7 +9,7 @@ module crash_GaussStepping
     function Gauss_Stepping(M::Matrix{Float64})::Matrix{Float64}
         M = crash_Matrix.Matrix_ClearEmptyRow(M)
         
-        if crash_MatrixTools.Matrix_IsNull(M)
+        if crash_Matrix.Matrix_IsNull(M)
             throw(DimensionMismatch("Vector size must be greather thank 0!"))
         end
 
