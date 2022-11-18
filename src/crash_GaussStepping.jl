@@ -20,7 +20,7 @@ module crash_GaussStepping
             P_min = crash_Pivot.Pivot_GetRowIndex_MinPivot_First(M2) + RowStep - 1
             M = crash_ElementaryOperations.ElementaryOperations_SwapRows(M, RowStep, P_min)
             
-            PivotStep = Pivot_GetIndexRow(vec(M[[RowStep], :]))
+            PivotStep = crash_Pivot.Pivot_GetIndexRow(vec(M[[RowStep], :]))
 
             for i in (RowStep+1):size(M, 1)
                 if crash_Pivot.Pivot_GetIndexRow(vec(M[[i], :])) <= PivotStep
