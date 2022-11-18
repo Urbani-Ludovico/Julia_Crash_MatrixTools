@@ -1,16 +1,21 @@
 module crash_MatrixTools
 
-include("crash_Matrix.jl")
-export Matrix_IsNull, Matrix_SwapRows, Matrix_RemoveRows, Matrix_ClearEmptyRow, Matrix_IsInStair
+    include("crash_Matrix.jl")
+    const Matrix = crash_Matrix
+    export Matrix
 
-include("crash_Pivot.jl")
-export Pivot_GetIndexRow, Pivot_GetRowIndex_MinPivot_First
+    include("crash_Pivot.jl")
+    const Pivot = crash_Pivot
+    export Pivot
 
-include("crash_ElementaryOperations.jl")
-export Matrix_EO1, Matrix_EO2, Matrix_EO3, ElementaryOperations_SwapRows, ElementaryOperations_RowProductConst, ElementaryOperations_RowCOther
+    include("crash_ElementaryOperations.jl")
+    const ElementaryOperations = crash_ElementaryOperations
+    const EO = crash_ElementaryOperations
+    export ElementaryOperations, EO
 
-include("crash_GaussStepping.jl")
-export Gauss_Stepping, Gauss_ReduceTwoRows
+    include("crash_GaussStepping.jl")
+    const GaussStepping = crash_GaussStepping
+    export GaussStepping
 
 
 end # module crash_MatrixTools
