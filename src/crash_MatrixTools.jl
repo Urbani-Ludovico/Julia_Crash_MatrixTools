@@ -1,8 +1,8 @@
 module crash_MatrixTools
 
     include("crash_Matrix.jl")
-    const Matrix = crash_Matrix
-    export Matrix
+    const MatrixT = crash_Matrix
+    export MatrixT
 
     include("crash_Pivot.jl")
     const Pivot = crash_Pivot
