@@ -5,4 +5,5 @@ using Test, crash_MatrixTools
     include("Matrix_test.jl")
     include("ElementaryOperations_test.jl")
     include("GaussStepping_test.jl")
+    include("Rank_test.jl")
 end
