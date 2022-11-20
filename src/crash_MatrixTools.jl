@@ -17,5 +17,8 @@ module crash_MatrixTools
     const GaussStepping = crash_GaussStepping
     export GaussStepping
 
+    include("crash_Rank.jl")
+    const Rank = crash_Rank
+    export Rank
 
 end # module crash_MatrixTools
