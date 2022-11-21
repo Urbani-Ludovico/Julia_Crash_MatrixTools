@@ -61,4 +61,9 @@
             @test false == MatrixT.Matrix_IsInStair(zeros(2, 3))
         end
     end
+
+    @testset verbose=true "Matrix_MinorRemove" begin
+        @test [2.0 3; 3 4] == MatrixT.Matrix_MinorRemove([0.0 1 2; 1 2 3; 2 3 4], [1], [1])
+        @test [4.0 ;;] == MatrixT.Matrix_MinorRemove([0.0 1 2; 1 2 3; 2 3 4], [1,2], [1,2])
+    end
 end

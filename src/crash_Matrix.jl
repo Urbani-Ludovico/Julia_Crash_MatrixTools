@@ -2,7 +2,7 @@ module crash_Matrix
 
     include("crash_Pivot.jl")
 
-    export Matrix_IsNull, Matrix_RemoveRows, Matrix_ClearEmptyRow, Matrix_IsInStair
+    export Matrix_IsNull, Matrix_RemoveRows, Matrix_ClearEmptyRow, Matrix_IsInStair, Matrix_MinorRemove
 
     function Matrix_IsNull(M::Matrix{Float64})::Bool
         for i in eachindex(M) 
@@ -45,6 +45,10 @@ module crash_Matrix
             end
         end
         return true
+    end
+
+    function Matrix_MinorRemove(M::Matrix{Float64}, R::Vector{Int64}, C::Vector{Int64})::Matrix{Float64}
+        return M[1:end .∉ [R], 1:end .∉ [C]]
     end
 
 end # end crash_Matrix
