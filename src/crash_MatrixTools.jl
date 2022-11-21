@@ -21,4 +21,8 @@ module crash_MatrixTools
     const Rank = crash_Rank
     export Rank
 
+    include("crash_Det.jl")
+    const Det = crash_Det
+    export Det
+
 end # module crash_MatrixTools
